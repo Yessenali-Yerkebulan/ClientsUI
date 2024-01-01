@@ -1,1 +1,37 @@
-<p>client works!</p>
+<div class="container">
+    <div class="border">
+        <button class="btn btn-md btn-outline-primary">
+          <i class="fa fa-user"></i>New Client</button>
+      </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let client of clients">
+        <td><span>{{client.id}}</span></td>
+        <td><span>{{client.firstName}}</span></td>
+        <td><span>{{client.lastName}}</span></td>
+        <td><span>{{client.contactNumber}}</span></td>
+        <td><span>{{client.email}}</span></td>
+        <td><span>{{client.country}}</span></td>
+        <td>
+            <button class="btn btn-sm btn-info">
+              <i class="fa fa-search"></i>Details</button>
+            <button class="btn btn-sm btn-warning">
+              <i class="fa fa-edit"></i>Edit</button>
+            <button class="btn btn-sm btn-danger">
+              <i class="fa fa-remove"></i>Delete</button>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
