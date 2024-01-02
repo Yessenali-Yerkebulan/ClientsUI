@@ -26,7 +26,7 @@
         <td>
             <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, client)">
               <i class="fa fa-search"></i>Details</button>
-            <button class="btn btn-sm btn-warning">
+            <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, client)">
               <i class="fa fa-edit"></i>Edit</button>
             <button class="btn btn-sm btn-danger">
               <i class="fa fa-remove"></i>Delete</button>
@@ -120,6 +120,57 @@
           <input id="country_details" class="form-control" readonly>
         </div>
       </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title3">Edit Client</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="form-group">
+        <label>Id</label>
+        <div class="input-group">
+          <input formControlName="id" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">Firstname</label>
+        <div class="input-group">
+          <input formControlName="firstName" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Lastname</label>
+        <div class="input-group">
+          <input formControlName="lastName" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <div class="input-group">
+          <input formControlName="contactNumber" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <input formControlName="email" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <div class="input-group">
+          <input formControlName="country" class="form-control">
+        </div>
+      </div>
+      <div class="border text-center"> <button data-dismiss="modal" class="btn btn-info">Save Changes</button> </div>
     </form>
   </div>
   <div class="modal-footer">

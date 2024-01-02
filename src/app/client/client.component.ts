@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
 
 export class Client{
   constructor(
@@ -23,14 +23,24 @@ export class ClientComponent implements OnInit {
 
   clients!: Client[];
   closeResult!: string;
+  editForm!: FormGroup;
 
   constructor(
     private httpClient: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getClients();
+    this.editForm = this.fb.group({
+      id: [''],
+      firstName: [''],
+      lastName: [''],
+      contactNumber: [''],
+      email: [''],
+      country: ['']
+    });
   }
 
   getClients(){
@@ -76,6 +86,23 @@ export class ClientComponent implements OnInit {
     document.getElementById('email_details').setAttribute('value', client.email);
     // @ts-ignore
     document.getElementById('country_details').setAttribute('value', client.country);
+  }
+
+  // @ts-ignore
+  openEdit(targetModal, client: Client) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    this.editForm.patchValue( {
+      id: client.id,
+      firstName: client.firstName,
+      lastName: client.lastName,
+      contactNumber: client.contactNumber,
+      email: client.email,
+      country: client.country
+    });
   }
 
   private getDismissReason(reason: any): string {
