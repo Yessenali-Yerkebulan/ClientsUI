@@ -59,6 +59,25 @@ export class ClientComponent implements OnInit {
     });
   }
 
+  // @ts-ignore
+  openDetails(targetModal, client: Client) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    // @ts-ignore
+    document.getElementById('fname').setAttribute('value', client.firstName);
+    // @ts-ignore
+    document.getElementById('lname').setAttribute('value', client.lastName);
+    // @ts-ignore
+    document.getElementById('contact_number').setAttribute('value', client.contactNumber);
+    // @ts-ignore
+    document.getElementById('email_details').setAttribute('value', client.email);
+    // @ts-ignore
+    document.getElementById('country_details').setAttribute('value', client.country);
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

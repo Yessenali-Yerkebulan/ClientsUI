@@ -24,7 +24,7 @@
         <td><span>{{client.email}}</span></td>
         <td><span>{{client.country}}</span></td>
         <td>
-            <button class="btn btn-sm btn-info">
+            <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, client)">
               <i class="fa fa-search"></i>Details</button>
             <button class="btn btn-sm btn-warning">
               <i class="fa fa-edit"></i>Edit</button>
@@ -75,6 +75,50 @@
       </div>
       <div class="border text-center">
         <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title1">Client Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>FirstName</label>
+        <div class="input-group">
+          <input id="fname" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label>LastName</label>
+        <div class="input-group">
+          <input id="lname" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label>Contact Number</label>
+        <div class="input-group">
+          <input id="contact_number" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label>Email</label>
+        <div class="input-group">
+          <input id="email_details" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label>Country</label>
+        <div class="input-group">
+          <input id="country_details" class="form-control" readonly>
+        </div>
       </div>
     </form>
   </div>
