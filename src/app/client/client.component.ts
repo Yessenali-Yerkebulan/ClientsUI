@@ -20,10 +20,14 @@ export class Client{
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
-
-  clients!: Client[];
-  closeResult!: string;
-  editForm!: FormGroup;
+  // @ts-ignore
+  clients: Client[];
+  // @ts-ignore
+  closeResult: string;
+  // @ts-ignore
+  editForm: FormGroup;
+  // @ts-ignore
+  deleteId: number;
 
   constructor(
     private httpClient: HttpClient,
@@ -105,9 +109,27 @@ export class ClientComponent implements OnInit {
     });
   }
 
+  // @ts-ignore
+  openDelete(targetModal, client: Client) {
+    this.deleteId = client.id;
+    this.modalService.open(targetModal, {
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
   onSave() {
     const editURL = 'http://localhost:8080/api/v1/clients/' + this.editForm.value.id + '/edit';
     this.httpClient.put(editURL, this.editForm.value)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
+
+  onDelete() {
+    const deleteURL = 'http://localhost:8080/api/v1/clients/' + this.deleteId + '/delete';
+    this.httpClient.delete(deleteURL)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
