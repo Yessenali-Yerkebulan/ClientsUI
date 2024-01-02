@@ -1,5 +1,8 @@
 # ClientsUI
 
+![Screenshot 2024-01-02 at 15-21-14 ClientsUI](https://github.com/Yessenali-Yerkebulan/ClientsUI/assets/113698340/6f15f685-1f44-471b-bc9b-5bb1c7cdf28d)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
