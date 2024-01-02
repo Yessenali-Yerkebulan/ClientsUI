@@ -42,40 +42,43 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
       <div class="form-group">
         <label for="firstName">FirstName</label>
         <div class="input-group">
-          <input id="firstName" class="form-control" >
+          <input id="firstName" name="firstName" class="form-control" ngModel>
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="lastName">LastName</label>
         <div class="input-group">
-          <input id="lastName" class="form-control" >
+          <input id="lastName" name="lastName" class="form-control" ngModel>
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="contactNumber">Contact Number</label>
         <div class="input-group">
-          <input id="contactNumber" class="form-control" >
+          <input id="contactNumber" name="contactNumber" class="form-control" ngModel>
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="email">Email</label>
         <div class="input-group">
-          <input id="email" class="form-control" >
+          <input id="email" name="email" class="form-control" ngModel>
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="country">Country</label>
         <div class="input-group">
-          <input id="country" class="form-control" >
+          <input id="country" name="country" class="form-control" ngModel>
         </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
   </div>
 </ng-template>

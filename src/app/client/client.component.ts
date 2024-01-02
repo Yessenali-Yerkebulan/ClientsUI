@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgForm} from "@angular/forms";
 
 export class Client{
   constructor(
@@ -39,6 +40,15 @@ export class ClientComponent implements OnInit {
         this.clients = response;
       }
     );
+  }
+
+  onSubmit(f: NgForm) {
+    const url = 'http://localhost:8080/api/v1/clients';
+    this.httpClient.post(url, f.value)
+      .subscribe((result) => {
+        this.ngOnInit(); //reload the table
+      });
+    this.modalService.dismissAll(); //dismiss the modal
   }
 
   open(content: any) {
