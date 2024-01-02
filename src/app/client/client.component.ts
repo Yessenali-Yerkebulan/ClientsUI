@@ -105,6 +105,16 @@ export class ClientComponent implements OnInit {
     });
   }
 
+  onSave() {
+    const editURL = 'http://localhost:8080/api/v1/clients/' + this.editForm.value.id + '/edit';
+    this.httpClient.put(editURL, this.editForm.value)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
