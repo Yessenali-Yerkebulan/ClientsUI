@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
+import {FileDownloadService} from "../file-download.service";
 
 export class Client{
   constructor(
@@ -32,8 +33,29 @@ export class ClientComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private modalService: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private fileDownloadService: FileDownloadService
   ) { }
+
+  downloadFile(): void {
+    this.fileDownloadService.downloadFile().subscribe(
+      (data: Blob) => {
+        // Create a Blob URL and trigger download
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'clients.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        console.error('Error downloading file:', error);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.getClients();
