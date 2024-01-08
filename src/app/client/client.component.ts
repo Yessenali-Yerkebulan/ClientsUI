@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {FileDownloadService} from "../file-download.service";
 
 export class Client{
@@ -61,11 +61,11 @@ export class ClientComponent implements OnInit {
     this.getClients();
     this.editForm = this.fb.group({
       id: [''],
-      firstName: [''],
-      lastName: [''],
-      contactNumber: [''],
-      email: [''],
-      country: ['']
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      contactNumber: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
+      country: ['', Validators.required]
     });
   }
 

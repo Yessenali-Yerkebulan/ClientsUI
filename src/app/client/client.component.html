@@ -62,16 +62,22 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label for="firstName">FirstName</label>
         <div class="input-group">
           <input id="firstName" name="firstName" class="form-control" ngModel>
+          <div *ngIf="editForm.get('firstName')?.hasError('required') && editForm.get('firstName')?.touched">
+            First Name is required.
+          </div>
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="lastName">LastName</label>
         <div class="input-group">
+          <div *ngIf="editForm.get('lastName')?.hasError('required') && editForm.get('lastName')?.touched">
+            Last Name is required.
+          </div>
           <input id="lastName" name="lastName" class="form-control" ngModel>
         </div>
       </div>
